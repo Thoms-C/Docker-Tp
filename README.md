@@ -1,28 +1,53 @@
-# DemoDocker VS RunCompose 🐋
+# Exercice 3 - Docker compose 🐋
 
-Cette démonstration a pour but de montrer la différence entre un `docker run` et un `docker-compose`.
+L'objectif de cet exercice est de créer une stack pour le service dev de votre entreprise.
+Il s'agit d'une petite application permettant d'afficher une liste de bières d'un magasin.
 
-Nous allons monter l'application de deux manières différentes : avec et sans docker-compose.
+L'application contient 3 endpoints : 
+- La liste complète des bières
+- Le CA des principaux fabricants
+- Les variations de ventes entre 2015 et 2016.
 
-Ce répo continet toutes les sources d'un projet PHP.
+> Le développeur en charge vous confirme que 'ça marche sur sa machine'.
 
+Vous avez à votre disposition : 
+- un répertoire `api` qui contient le code source d'une API flask
+- un répertoire `sql` qui contient de quoi créer une base de données MySQL contenant des données
 
-## Prérequis 🛞
+Vous devez réaliser un fichier docker-compose qui permet de créer les conteneurs suivants :
+- un conteneur MySQL
+- un conteneur flask
 
-- [Docker](https://docs.docker.com/get-docker/)
+## Attendus ✅
 
-## Déroulement ✅
+- Vous devez créer les Dockerfiles nécessaires à la création des images
+- Le docker-compose doit construire les images à partir des Dockerfiles
 
-- Clônez le contenu du répo
-- Placez-vous dans le répertoire
-- Avec l'aide du formateur, montez la stack
-- Ayez du fun <3
+## Aides 💡
 
-## Images 📷
+Les aides ici vous aideront à construire cette application !
+Pensez à bien les lire, en complément de la documentation des images !
+Précision : vous n'avez pas besoin de volumes.
 
-- Pour la BDD : `mysql:5.7`
-- Pour le serveur web : `php:7.4-apache`
+### API 🌐
 
-## Sources 🌊
+- Le fichier `requirements.txt` contient les dépendances python nécessaires à l'API
+- Il devra être copié dans le conteneur et installé avec la commande `pip install -r requirements.txt`
+- L'API doit exposer sur le port `80`.
+- Le conteneur doit exposer le port `5000`
+- Vous devez utiliser l'image `python` comme image de base
 
-- Les sources ont été trouvées sur [ce site](https://devopssec.fr/article/gerez-vos-conteneurs-docker-compose#begin-article-section)
+### BDD 💾
+
+- Vous devez utiliser l'image `mysql` comme image de base
+- Vous devez copier le fichier `beer.sql` dans l'entrypoint du conteneur MySQL
+- Le nom de la base de données doit être `beer`
+- Le mot de passe root doit être `root`
+
+## Aides supplémentaires ✋
+
+> Avant de vous diriger vers les indices, essayez de réaliser l'exercice sans :).
+
+Si vous avez besoin d'indices supplémentaires, vous pouvez vous tourner vers les fichiers suivants : 
+- [Aides du poulet](./consignes/poulet.md) 🐔
+- [Aides du poussin](./consignes/poussin.md) 🐣
